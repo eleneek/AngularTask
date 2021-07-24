@@ -7,6 +7,8 @@ import { ModalComponent } from './containers/modal/modal.component';
 import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 import { SharedModule } from '../../shared/shared.module';
 import { AlphabetOnlyDirective } from './directives/alphabet-only.directive';
+import { StoreModule } from '@ngrx/store';
+import { usersReducer } from './store';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,11 @@ import { AlphabetOnlyDirective } from './directives/alphabet-only.directive';
     AddNewUserComponent,
     AlphabetOnlyDirective,
   ],
-  imports: [CommonModule, UsersRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    UsersRoutingModule,
+    SharedModule,
+    StoreModule.forFeature('users', usersReducer),
+  ],
 })
 export class UsersModule {}

@@ -8,7 +8,6 @@ import { PrimengModule } from '../shared/libraries/primeng/primeng.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { reducers, metaReducers } from '../store';
 import { environment } from '../../environments/environment';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AddNewUserComponent } from '../features/users/components/add-new-user/add-new-user.component';
@@ -28,13 +27,15 @@ import { CoreModule } from '../core/core.module';
     ReactiveFormsModule,
     FormsModule,
     CoreModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-      },
-    }),
+    StoreModule.forRoot(
+      {},
+      {
+        runtimeChecks: {
+          strictStateImmutability: true,
+          strictActionImmutability: true,
+        },
+      }
+    ),
     !environment.production
       ? StoreDevtoolsModule.instrument({
           maxAge: 25,

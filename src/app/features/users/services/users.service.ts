@@ -10,6 +10,6 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   addUser(request: User) {
-    return this.http.post(`http://localhost:4000/users`, request);
+    return this.http.post(`${environment.endpoint}/users`, request);
   }
 }
