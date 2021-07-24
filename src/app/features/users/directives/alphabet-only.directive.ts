@@ -20,7 +20,6 @@ export class AlphabetOnlyDirective {
     setTimeout(() => {
       this.el.nativeElement.value = this.el.nativeElement.value
         .replace(/[^A-Za-z ]/g, '')
-
         .replace(/\d+/g, '');
       event.preventDefault();
     }, 100);

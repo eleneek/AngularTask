@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { AddNewUserComponent } from 'src/app/features/users/components/add-new-user/add-new-user.component';
 
 @Component({
   selector: 'app-menu-bar',
@@ -7,38 +9,30 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./menu-bar.component.scss'],
 })
 export class MenuBarComponent implements OnInit {
-  constructor() {}
+  constructor(public dialogService: DialogService) {}
 
   items: MenuItem[] = [];
 
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Users',
+        label: 'მომხმარებელი',
         icon: 'pi pi-fw pi-user',
         items: [
           {
-            label: 'New',
+            label: 'დამატება',
             icon: 'pi pi-fw pi-user-plus',
-          },
-          {
-            label: 'Delete',
-            icon: 'pi pi-fw pi-user-minus',
-          },
-          {
-            label: 'Edit',
-            icon: 'pi pi-fw pi-pencil',
-          },
-          {
-            label: 'Add Bonus',
-            icon: 'pi pi-plus-circle',
-          },
-          {
-            label: 'Delete Bonus',
-            icon: 'pi pi-minus-circle',
+            command: () => this.addUser(),
           },
         ],
       },
     ];
+  }
+
+  addUser() {
+    const ref = this.dialogService.open(AddNewUserComponent, {
+      header: 'მომხმარებლის დამატება',
+      width: '70%',
+    });
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { checkNumberLength } from '../../services/helpers/number-validation';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-add-new-user',
@@ -10,7 +11,12 @@ import { checkNumberLength } from '../../services/helpers/number-validation';
 })
 export class AddNewUserComponent implements OnInit {
   userForm: FormGroup;
-  constructor(private fb: FormBuilder, public ref: DynamicDialogRef) {
+  submitted: boolean = false;
+  constructor(
+    private fb: FormBuilder,
+    public ref: DynamicDialogRef,
+    private userServ: UsersService
+  ) {
     this.userForm = this.fb.group({
       id: [null],
       name: [
@@ -40,17 +46,34 @@ export class AddNewUserComponent implements OnInit {
         city: ['', [Validators.required]],
         streetAdress: ['', [Validators.required]],
       }),
-      image: [''],
+      image: ['', [Validators.required]],
     });
   }
 
   ngOnInit(): void {}
+
+  onRemove(event: any) {
+    this.userForm.get('image')?.setValue('');
+  }
+  onSelect(event: any) {
+    for (let file of event.files) {
+      this.userForm
+        .get('image')
+        ?.setValue(file.objectURL.changingThisBreaksApplicationSecurity);
+    }
+  }
 
   close() {
     this.ref.close();
   }
 
   submit() {
-    console.log(this.userForm);
+    this.submitted = true;
+    if (this.userForm.invalid) {
+      return;
+    }
+
+    this.userForm.get('id')?.setValue(new Date().getUTCMilliseconds());
+    this.userServ.addUser(this.userForm.value).subscribe();
   }
 }
