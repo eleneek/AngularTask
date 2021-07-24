@@ -1,0 +1,28 @@
+.wrapper {
+  padding: 20px 82px;
+  .row_wrapper {
+    margin-bottom: 20px;
+  }
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .radio_button_wrapper {
+      width: 195px;
+    }
+
+    span,
+    .radio_button {
+      margin-right: 20px;
+    }
+  }
+
+  .buttons_wrapper {
+    display: flex;
+    justify-content: flex-end;
+    button:first-child {
+      margin-right: 20px;
+    }
+  }
+}

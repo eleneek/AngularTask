@@ -1,0 +1,98 @@
+<div class="wrapper">
+  <form [formGroup]="userForm">
+    <div class="flex row_wrapper">
+      <span class="p-float-label">
+        <input
+          id="float-input"
+          type="text"
+          pInputText
+          formControlName="name"
+          appAlphabetOnly
+        />
+        <label for="float-input">სახელი</label>
+      </span>
+      <span class="p-float-label">
+        <input
+          id="float-input"
+          type="text"
+          pInputText
+          formControlName="lastName"
+          appAlphabetOnly
+        />
+        <label for="float-input">გვარი</label>
+      </span>
+      <div class="flex radio_button_wrapper radio_button">
+        <div class="p-field-radiobutton radio_button">
+          <p-radioButton value="ქალი" formControlName="sex">ქალი</p-radioButton>
+          <label>ქალი</label>
+        </div>
+        <div class="p-field-radiobutton radio_button">
+          <p-radioButton value="კაცი" formControlName="sex">კაცი</p-radioButton>
+          <label>კაცი</label>
+        </div>
+      </div>
+
+      <span class="p-float-label">
+        <input
+          id="float-input"
+          type="text"
+          pInputText
+          formControlName="identificationNumber"
+        />
+        <label for="float-input">პირადი ნომერი</label>
+      </span>
+    </div>
+
+    <div class="flex row_wrapper">
+      <span class="p-float-label">
+        <input
+          id="float-input"
+          type="text"
+          pInputText
+          formControlName="mobileNumber"
+        />
+        <label for="float-input">მობილური</label>
+      </span>
+
+      <div formGroupName="physicalAddress" class="flex">
+        <span class="p-float-label">
+          <input
+            id="float-input"
+            type="text"
+            pInputText
+            formControlName="country"
+          />
+          <label for="float-input">ქვეყანა</label>
+        </span>
+        <span class="p-float-label">
+          <input
+            id="float-input"
+            type="text"
+            pInputText
+            formControlName="city"
+          />
+          <label for="float-input">ქალაქი</label>
+        </span>
+        <span class="p-float-label">
+          <input
+            id="float-input"
+            type="text"
+            pInputText
+            formControlName="streetAdress"
+          />
+          <label for="float-input">მისამართი</label>
+        </span>
+      </div>
+    </div>
+
+    <p-fileUpload mode="basic" name="demo[]" accept="image/*"></p-fileUpload>
+  </form>
+  <div class="buttons_wrapper">
+    <button pButton type="button" class="p-button-secondary" (click)="close()">
+      გაუქმება
+    </button>
+    <button pButton type="button" (click)="submit()">
+      მომხმარებლის დამატება
+    </button>
+  </div>
+</div>
