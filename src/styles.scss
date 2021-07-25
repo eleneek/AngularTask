@@ -4,6 +4,42 @@
 
 @import './assets/styles/reset.scss';
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+  font-weight: 700;
+  color: #222222;
+}
+
+h1 {
+  font-size: 72px;
+}
+
+h2 {
+  font-size: 64px;
+}
+h3 {
+  font-size: 48px;
+}
+h4 {
+  font-size: 30px;
+}
+h5 {
+  font-size: 24px;
+}
+h6 {
+  font: 18px;
+}
+p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #222222;
+}
+
 i {
   cursor: pointer;
   &:hover {

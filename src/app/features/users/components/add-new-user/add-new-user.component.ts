@@ -5,6 +5,7 @@ import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {Subject} from 'rxjs';
 import {takeUntil, tap} from 'rxjs/operators';
 import {checkNumberLength} from '../../services/helpers/number-validation';
+import {UsersService} from '../../services/users.service';
 import {UsersState} from '../../store';
 import {
   addUser,
@@ -34,7 +35,8 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     public ref: DynamicDialogRef,
     private store: Store<UsersState>,
-    public config: DynamicDialogConfig
+    public config: DynamicDialogConfig,
+    private userServ: UsersService
   ) {
     this.userForm = this.fb.group({
       id: [null],
@@ -70,6 +72,7 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.userServ.addAndEditModalOpened = true;
     if (this.config.data) {
       this.editMode = true;
       this.userForm.setValue(this.config.data);
@@ -117,6 +120,7 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
   }
 
   public close() {
+    this.userServ.addAndEditModalOpened = false;
     this.ref.close();
   }
 
@@ -137,6 +141,7 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
   closeAndLoadData() {
     this.ref.close();
     this.store.dispatch(getUsers());
+    this.userServ.addAndEditModalOpened = false;
   }
 
   changeImage() {

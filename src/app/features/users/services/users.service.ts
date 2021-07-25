@@ -8,6 +8,7 @@ import {User} from './models/users.interface';
   providedIn: 'root',
 })
 export class UsersService {
+  public addAndEditModalOpened = false;
   constructor(private http: HttpClient) {}
 
   addUser(request: User): Observable<User> {

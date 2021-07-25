@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
-import { featureRoutes } from '../features/features.routes';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {PageNotFoundComponent} from '../shared/components/page-not-found/page-not-found.component';
+import {featureRoutes} from '../features/features.routes';
+import {PreventBackButtonGuard} from '../features/users/guards/prevent-back-button.guard';
 
 const routes: Routes = [
   ...featureRoutes,
@@ -9,6 +10,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/users',
     pathMatch: 'full',
+    canDeactivate: [PreventBackButtonGuard],
   },
 
   {
