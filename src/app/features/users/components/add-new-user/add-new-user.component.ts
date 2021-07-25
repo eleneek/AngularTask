@@ -128,7 +128,9 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
       this.store.dispatch(updateUser({user: this.userForm.value}));
     } else {
       this.userForm.get('id')?.setValue(new Date().getUTCMilliseconds());
-      this.store.dispatch(addUser({user: this.userForm.value}));
+      this.store.dispatch(
+        addUser({user: {...this.userForm.value, bonuses: []}})
+      );
     }
   }
 

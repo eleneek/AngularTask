@@ -7,10 +7,19 @@ export interface User {
   mobileNumber: number;
   physicalAddress: Address;
   image: string;
+  bonuses: Bonus[];
 }
 
 interface Address {
   country: string;
   city: string;
   streetAdress: string;
+}
+
+export interface Bonus {
+  bonusId: number;
+  userNumber: number;
+  bonusType: {name: string; value: string};
+  bonusAmount: number;
+  currency?: {name: string; value: string};
 }

@@ -10,6 +10,9 @@ import {ButtonModule} from 'primeng/button';
 import {ToastModule} from 'primeng/toast';
 import {TooltipModule} from 'primeng/tooltip';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {BadgeModule} from 'primeng/badge';
 
 @NgModule({
   declarations: [],
@@ -25,6 +28,9 @@ import {ProgressBarModule} from 'primeng/progressbar';
     ToastModule,
     TooltipModule,
     ProgressBarModule,
+    DropdownModule,
+    InputNumberModule,
+    BadgeModule,
   ],
   exports: [
     MenubarModule,
@@ -37,6 +43,9 @@ import {ProgressBarModule} from 'primeng/progressbar';
     ToastModule,
     TooltipModule,
     ProgressBarModule,
+    DropdownModule,
+    InputNumberModule,
+    BadgeModule,
   ],
 })
 export class PrimengModule {}

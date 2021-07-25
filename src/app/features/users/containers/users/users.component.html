@@ -3,6 +3,9 @@
   [usersDataLoading]="usersDataLoading"
   [maxRowsNumber]="maxRowsNumber"
   [totalRecords]="totalRecords"
+  [first]="first"
   (editUserEmitter)="editUser($event)"
   (deleteUserEmitter)="deleteUser($event)"
+  (addBonusEmitter)="addBonus($event)"
+  (viewAndDeleteBonusEmitter)="viewAndDeleteBonus($event)"
 ></app-users-table>

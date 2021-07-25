@@ -1,3 +1,6 @@
+:host ::ng-deep .p-overlay-badge .p-badge {
+  transform: translate(50%, -68%);
+}
 img {
   max-width: 200px;
   max-height: 80px;
@@ -5,7 +8,11 @@ img {
 .icons_wrapper {
   display: flex;
   width: 100%;
-  i:not(:last-child) {
-    margin-right: 10px;
+
+  i {
+    font-size: 18px;
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
   }
 }

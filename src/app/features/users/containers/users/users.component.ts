@@ -3,15 +3,13 @@ import {Store} from '@ngrx/store';
 import {DialogService} from 'primeng/dynamicdialog';
 import {Subject} from 'rxjs';
 import {takeUntil, tap} from 'rxjs/operators';
+import {AddBonusComponent} from '../../components/add-bonus/add-bonus.component';
 import {AddNewUserComponent} from '../../components/add-new-user/add-new-user.component';
 import {DeleteUserComponent} from '../../components/delete-user/delete-user.component';
+import {ViewAndDeleteBonusesComponent} from '../view-and-delete-bonuses/view-and-delete-bonuses.component';
 import {User} from '../../services/models/users.interface';
 import {UsersState} from '../../store';
-import {
-  getUsers,
-  refreshDeleteUser,
-  refreshUpdateUser,
-} from '../../store/actions';
+import {getUsers} from '../../store/actions';
 import {
   selectGetUsers,
   selectGetUsersLoading,
@@ -28,6 +26,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   public usersDataLoading: boolean = false;
   public maxRowsNumber: number = 5;
   public totalRecords: number = 0;
+  public first: number = 0;
   constructor(
     private store: Store<UsersState>,
     public dialogService: DialogService
@@ -41,6 +40,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         takeUntil(this.destroyed$),
         tap((data) => {
           this.usersData = data;
+          this.totalRecords = data.length;
         })
       )
       .subscribe();
@@ -57,7 +57,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   editUser($event: User) {
     this.dialogService.open(AddNewUserComponent, {
-      header: 'მომხმარებლის დამატება',
+      header: 'მომხმარებლის რედაქტირება',
       width: '70%',
       data: $event,
     });
@@ -66,6 +66,21 @@ export class UsersComponent implements OnInit, OnDestroy {
   deleteUser($event: User) {
     this.dialogService.open(DeleteUserComponent, {
       header: 'მომხმარებლის წაშლა',
+      width: '70%',
+      data: $event,
+    });
+  }
+
+  addBonus($event: User) {
+    this.dialogService.open(AddBonusComponent, {
+      header: 'ბონუსის დამატება',
+      width: '70%',
+      data: $event,
+    });
+  }
+  viewAndDeleteBonus($event: User) {
+    this.dialogService.open(ViewAndDeleteBonusesComponent, {
+      header: 'ბონუსის ნახვა/წაშლა',
       width: '70%',
       data: $event,
     });

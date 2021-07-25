@@ -57,8 +57,8 @@ export class UsersEffects {
             if (data) {
               this.messageToast.addToast(
                 'success',
-                'მომხმარებლის რედაქტირება',
-                'მომხმარებლის ინფორმაცია წარმატებით განახლდა'
+                'მომხმარებლის ქმედება',
+                'ქმედება წარმატებით განხორციელდა'
               );
 
               return [usersActions.updateUserSuccess()];
@@ -69,8 +69,8 @@ export class UsersEffects {
           catchError(() => {
             this.messageToast.addToast(
               'error',
-              'მომხმარებლის რედაქტირება',
-              'მომხმარებელი ინფორმაცია ვერ განახლდა. გთხოვთ, სცადოთ ხელახლა'
+              'მომხმარებლის ქმედება',
+              'ქმედება ვერ განხორციელდა. გთხოვთ, სცადოთ ხელახლა'
             );
             return of(usersActions.updateUserFail());
           })

@@ -13,7 +13,10 @@ export class UsersTableComponent implements OnInit {
   @Input() totalRecords: number = 0;
   @Output() editUserEmitter: EventEmitter<User> = new EventEmitter();
   @Output() deleteUserEmitter: EventEmitter<User> = new EventEmitter();
-  cols: {field: string; header: string}[] = [];
+  @Output() addBonusEmitter: EventEmitter<User> = new EventEmitter();
+  @Output() viewAndDeleteBonusEmitter: EventEmitter<User> = new EventEmitter();
+  @Input() first: number = 0;
+  public cols: {field: string; header: string}[] = [];
   constructor() {}
 
   ngOnInit(): void {
@@ -29,10 +32,16 @@ export class UsersTableComponent implements OnInit {
     ];
   }
 
-  editUser(rowData: User) {
+  public editUser(rowData: User) {
     this.editUserEmitter.emit(rowData);
   }
-  deleteUser(rowData: User) {
+  public deleteUser(rowData: User) {
     this.deleteUserEmitter.emit(rowData);
+  }
+  public addBonus(rowData: User) {
+    this.addBonusEmitter.emit(rowData);
+  }
+  public viewAndDeleteBonus(rowData: User) {
+    this.viewAndDeleteBonusEmitter.emit(rowData);
   }
 }

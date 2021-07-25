@@ -11,7 +11,11 @@ import {usersReducer} from './store';
 import {EffectsModule} from '@ngrx/effects';
 import {usersEffect} from './store/effects';
 import {UsersTableComponent} from './components/users-table/users-table.component';
-import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+import {DeleteUserComponent} from './components/delete-user/delete-user.component';
+import {AddBonusComponent} from './components/add-bonus/add-bonus.component';
+import {ViewAndDeleteBonusesComponent} from './containers/view-and-delete-bonuses/view-and-delete-bonuses.component';
+import {ViewAndDeleteBonusTableComponent} from './components/view-and-delete-bonus-table/view-and-delete-bonus-table.component';
+import { ViewUsersDetailsComponent } from './components/view-users-details/view-users-details.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,10 @@ import { DeleteUserComponent } from './components/delete-user/delete-user.compon
     AlphabetOnlyDirective,
     UsersTableComponent,
     DeleteUserComponent,
+    AddBonusComponent,
+    ViewAndDeleteBonusesComponent,
+    ViewAndDeleteBonusTableComponent,
+    ViewUsersDetailsComponent,
   ],
   imports: [
     CommonModule,

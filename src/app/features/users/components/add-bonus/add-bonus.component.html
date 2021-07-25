@@ -1,0 +1,38 @@
+<form [formGroup]="bonusForm">
+  <div class="elements_wrapper">
+    <div *ngFor="let formElement of bonusTempaleForm">
+      <div [ngSwitch]="formElement.type">
+        <div *ngSwitchCase="'number'">
+          <span class="p-float-label">
+            <p-inputNumber
+              formControlName="{{ formElement.name }}"
+            ></p-inputNumber>
+            <label for="float-input">ბონუსის რაოდენობა</label>
+          </span>
+        </div>
+
+        <div *ngSwitchCase="'select'">
+          <span class="p-float-label">
+            <p-dropdown
+              [options]="formElement.options"
+              [autoDisplayFirst]="false"
+              [style]="{height: '40px'}"
+              placeholder="{{ formElement.placeholder }}"
+              optionLabel="name"
+              formControlName="{{ formElement.name }}"
+              (onChange)="onDropChange(formElement.name)"
+            ></p-dropdown>
+            <label for="float-input">{{ formElement.label }}</label>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button pButton type="button" class="p-button-secondary" (click)="close()">
+      გაუქმება
+    </button>
+    <button pButton type="button" (click)="submit()">ბონუსის დამატება</button>
+  </div>
+</form>

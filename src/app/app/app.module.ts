@@ -10,7 +10,6 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {environment} from '../../environments/environment';
 import {DialogService} from 'primeng/dynamicdialog';
-import {AddNewUserComponent} from '../features/users/components/add-new-user/add-new-user.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './containers/app/app.component';
@@ -51,7 +50,6 @@ import {LoaderComponent} from '../shared/components/loader/loader.component';
     }),
   ],
   providers: [DialogService, MessageService],
-  entryComponents: [AddNewUserComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

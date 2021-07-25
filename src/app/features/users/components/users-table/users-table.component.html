@@ -1,8 +1,6 @@
 <p-table
-  #dt
   [columns]="cols"
   [value]="usersData"
-  [lazy]="true"
   [rows]="maxRowsNumber"
   [paginator]="true"
   [totalRecords]="totalRecords"
@@ -10,10 +8,11 @@
   [pageLinks]="3"
   [filterDelay]="0"
   [autoLayout]="true"
+  [(first)]="first"
 >
   <ng-template pTemplate="header" let-columns>
     <tr>
-      <th *ngFor="let col of columns" [ngSwitch]="col.field">
+      <th *ngFor="let col of columns">
         <div>
           {{ col.header }}
         </div>
@@ -49,11 +48,16 @@
               class="pi pi-plus-circle"
               pTooltip="ბონუსის დამატება"
               tooltipPosition="bottom"
+              (click)="addBonus(rowData)"
             ></i>
             <i
               class="pi pi-minus-circle"
-              pTooltip="ბონუსის წაშლა"
+              pTooltip="ბონუსის ნახვა/წაშლა"
+              pBadge
+              [value]="rowData?.bonuses?.length"
+              severity="info"
               tooltipPosition="bottom"
+              (click)="viewAndDeleteBonus(rowData)"
             ></i>
             <i
               class="pi pi-info-circle"
