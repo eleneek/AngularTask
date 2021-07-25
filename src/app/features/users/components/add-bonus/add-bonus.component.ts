@@ -19,6 +19,7 @@ export class AddBonusComponent implements OnInit, OnDestroy {
   public bonusForm: FormGroup;
   public bonusTempaleForm = bonusTemplate;
   private destroyed$ = new Subject<void>();
+  public submitted: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -49,6 +50,7 @@ export class AddBonusComponent implements OnInit, OnDestroy {
   }
 
   onDropChange(name: string) {
+    this.submitted = false;
     if (
       this.bonusForm.get('bonusType')?.value.name === 'Money' &&
       name === 'bonusType'
@@ -63,6 +65,7 @@ export class AddBonusComponent implements OnInit, OnDestroy {
         ],
         placeholder: 'აირჩიეთ ვალუტა',
         label: 'ვალუტა',
+        error: 'გთხოვთ, აირჩიოთ ვალუტა',
       });
       this.addControls();
     } else {
@@ -87,6 +90,7 @@ export class AddBonusComponent implements OnInit, OnDestroy {
     this.ref.close();
   }
   submit() {
+    this.submitted = true;
     let bonuses: Bonus[] = [];
     this.bonusForm.get('bonusId')?.setValue(new Date().getUTCMilliseconds());
     this.bonusForm.get('userNumber')?.setValue(new Date().getUTCMilliseconds());

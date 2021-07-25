@@ -5,6 +5,7 @@ interface BonusControl {
   options: {name: string; value: string}[];
   placeholder: string;
   label: string;
+  error: string;
 }
 
 export const bonusTemplate: BonusControl[] = [
@@ -19,6 +20,7 @@ export const bonusTemplate: BonusControl[] = [
     ],
     placeholder: 'აირჩიეთ ბონუსის ტიპი',
     label: 'ბონუსის ტიპი',
+    error: 'გთხოვთ, აირჩიოთ ბონუსის ტიპი',
   },
   {
     type: 'number',
@@ -27,5 +29,6 @@ export const bonusTemplate: BonusControl[] = [
     options: [],
     placeholder: '',
     label: '',
+    error: 'გთხოვთ, შეავსოთ ბონუსის ველი',
   },
 ];

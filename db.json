@@ -26,6 +26,19 @@
             "name": "USD",
             "value": "USD"
           }
+        },
+        {
+          "bonusId": 446,
+          "userNumber": 446,
+          "bonusType": {
+            "name": "Money",
+            "value": "Money"
+          },
+          "bonusAmount": 223232,
+          "currency": {
+            "name": "GEL",
+            "value": "GEL"
+          }
         }
       ]
     }

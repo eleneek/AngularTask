@@ -5,9 +5,18 @@
         <div *ngSwitchCase="'number'">
           <span class="p-float-label">
             <p-inputNumber
+              [ngClass]="{
+                'ng-invalid ng-dirty':
+                  submitted && bonusForm.get(formElement.name)?.invalid
+              }"
               formControlName="{{ formElement.name }}"
             ></p-inputNumber>
             <label for="float-input">ბონუსის რაოდენობა</label>
+            <span
+              class="error_text"
+              *ngIf="submitted && bonusForm.get(formElement.name)?.invalid"
+              >*{{ formElement.error }}</span
+            >
           </span>
         </div>
 
@@ -21,8 +30,17 @@
               optionLabel="name"
               formControlName="{{ formElement.name }}"
               (onChange)="onDropChange(formElement.name)"
+              [ngClass]="{
+                'ng-invalid ng-dirty':
+                  submitted && bonusForm.get(formElement.name)?.invalid
+              }"
             ></p-dropdown>
             <label for="float-input">{{ formElement.label }}</label>
+            <span
+              class="error_text"
+              *ngIf="submitted && bonusForm.get(formElement.name)?.invalid"
+              >*{{ formElement.error }}</span
+            >
           </span>
         </div>
       </div>
