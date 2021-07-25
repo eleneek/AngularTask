@@ -43,6 +43,7 @@ export class AddBonusComponent implements OnInit, OnDestroy {
           if (data) {
             this.ref.close();
             this.store.dispatch(refreshUpdateUser());
+            this.store.dispatch(getUsers());
           }
         })
       )

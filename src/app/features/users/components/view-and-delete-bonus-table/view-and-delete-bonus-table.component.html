@@ -2,7 +2,7 @@
   type="button"
   pButton
   (click)="deleteBonus()"
-  [disabled]="!bonusesData.length"
+  [disabled]="!bonusesData.length || !selectedBonuses.length"
 >
   მონიშნული ბონუსების წაშლა
 </button>

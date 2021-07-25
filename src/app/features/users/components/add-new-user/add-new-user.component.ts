@@ -4,6 +4,7 @@ import {Store} from '@ngrx/store';
 import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {Subject} from 'rxjs';
 import {takeUntil, tap} from 'rxjs/operators';
+import {CanComponentDeactivate} from '../../guards/prevent-back-button.guard';
 import {checkNumberLength} from '../../services/helpers/number-validation';
 import {UsersService} from '../../services/users.service';
 import {UsersState} from '../../store';
@@ -56,7 +57,7 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
           Validators.required,
         ],
       ],
-      sex: [''],
+      sex: ['', [Validators.required]],
       identificationNumber: [
         null,
         [Validators.required, checkNumberLength(11)],
@@ -68,6 +69,7 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
         streetAdress: ['', [Validators.required]],
       }),
       image: ['', [Validators.required]],
+      bonuses: [null],
     });
   }
 

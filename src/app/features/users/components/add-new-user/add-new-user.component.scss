@@ -56,7 +56,7 @@
       width: 195px;
     }
 
-    span,
+    span:not(.error_text),
     .radio_button {
       margin-right: 20px;
     }

@@ -1,5 +1,5 @@
 <div class="details_wrapper">
-  <h4>ზოგადი ინფორმაცია</h4>
+  <h5>ზოგადი ინფორმაცია</h5>
   <img [src]="userData.image" alt="" />
   <div class="flex">
     <span class="p-float-label">
@@ -59,7 +59,7 @@
     </span>
   </div>
 
-  <h4>ბონუსები</h4>
+  <h5>ბონუსები</h5>
 
   <ng-container *ngIf="userData.bonuses && userData.bonuses.length">
     <div *ngFor="let bonus of userData.bonuses; let i = index" class="flex">

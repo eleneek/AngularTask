@@ -15,7 +15,9 @@ import {DeleteUserComponent} from './components/delete-user/delete-user.componen
 import {AddBonusComponent} from './components/add-bonus/add-bonus.component';
 import {ViewAndDeleteBonusesComponent} from './containers/view-and-delete-bonuses/view-and-delete-bonuses.component';
 import {ViewAndDeleteBonusTableComponent} from './components/view-and-delete-bonus-table/view-and-delete-bonus-table.component';
-import { ViewUsersDetailsComponent } from './components/view-users-details/view-users-details.component';
+import {ViewUsersDetailsComponent} from './components/view-users-details/view-users-details.component';
+import {PreventBackButtonGuard} from './guards/prevent-back-button.guard';
+import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -36,5 +38,6 @@ import { ViewUsersDetailsComponent } from './components/view-users-details/view-
     StoreModule.forFeature('users', usersReducer),
     EffectsModule.forFeature(usersEffect),
   ],
+  providers: [PreventBackButtonGuard, DynamicDialogRef, DynamicDialogConfig],
 })
 export class UsersModule {}

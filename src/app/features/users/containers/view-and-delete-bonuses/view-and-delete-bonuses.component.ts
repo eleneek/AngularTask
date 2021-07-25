@@ -5,7 +5,7 @@ import {Subject} from 'rxjs';
 import {takeUntil, tap} from 'rxjs/operators';
 import {Bonus, User} from '../../services/models/users.interface';
 import {UsersState} from '../../store';
-import {refreshUpdateUser, updateUser} from '../../store/actions';
+import {getUsers, refreshUpdateUser, updateUser} from '../../store/actions';
 import {selectUpdateUserLoaded} from '../../store/selectors/user.selector';
 
 @Component({
@@ -35,6 +35,7 @@ export class ViewAndDeleteBonusesComponent implements OnInit, OnDestroy {
         tap((data) => {
           if (data) {
             this.store.dispatch(refreshUpdateUser());
+            this.store.dispatch(getUsers());
             this.ref.close();
           }
         })

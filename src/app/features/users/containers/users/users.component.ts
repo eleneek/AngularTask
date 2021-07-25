@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {DialogService} from 'primeng/dynamicdialog';
+import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {Subject} from 'rxjs';
 import {takeUntil, tap} from 'rxjs/operators';
 import {AddBonusComponent} from '../../components/add-bonus/add-bonus.component';
@@ -15,6 +15,9 @@ import {
   selectGetUsersLoading,
 } from '../../store/selectors/user.selector';
 import {ViewUsersDetailsComponent} from '../../components/view-users-details/view-users-details.component';
+import {CanComponentDeactivate} from '../../guards/prevent-back-button.guard';
+import {Router} from '@angular/router';
+import {PlatformLocation} from '@angular/common';
 
 @Component({
   selector: 'app-users',
@@ -28,9 +31,12 @@ export class UsersComponent implements OnInit, OnDestroy {
   public maxRowsNumber: number = 5;
   public totalRecords: number = 0;
   public first: number = 0;
+
   constructor(
     private store: Store<UsersState>,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private router: Router,
+    private ref: DynamicDialogRef
   ) {}
 
   ngOnInit(): void {

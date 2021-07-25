@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {MenuItem} from 'primeng/api';
 import {DialogService} from 'primeng/dynamicdialog';
 import {AddNewUserComponent} from 'src/app/features/users/components/add-new-user/add-new-user.component';
@@ -9,7 +10,7 @@ import {AddNewUserComponent} from 'src/app/features/users/components/add-new-use
   styleUrls: ['./menu-bar.component.scss'],
 })
 export class MenuBarComponent implements OnInit {
-  constructor(public dialogService: DialogService) {}
+  constructor(public dialogService: DialogService, private router: Router) {}
 
   items: MenuItem[] = [];
 
@@ -30,6 +31,7 @@ export class MenuBarComponent implements OnInit {
   }
 
   addUser() {
+    // this.router.navigateByUrl('/users/add-user');
     this.dialogService.open(AddNewUserComponent, {
       header: 'მომხმარებლის დამატება',
       width: '70%',

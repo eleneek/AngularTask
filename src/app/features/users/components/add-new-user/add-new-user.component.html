@@ -8,92 +8,262 @@
     </div>
 
     <div class="flex row_wrapper">
-      <span class="p-float-label">
-        <input
-          id="float-input"
-          type="text"
-          pInputText
-          formControlName="name"
-          appAlphabetOnly
-        />
-        <label for="float-input">სახელი</label>
-      </span>
-      <span class="p-float-label">
-        <input
-          id="float-input"
-          type="text"
-          pInputText
-          formControlName="lastName"
-          appAlphabetOnly
-        />
-        <label for="float-input">გვარი</label>
-      </span>
-      <div class="flex radio_button_wrapper radio_button">
-        <div class="p-field-radiobutton radio_button">
-          <p-radioButton value="ქალი" formControlName="sex">ქალი</p-radioButton>
-          <label>ქალი</label>
-        </div>
-        <div class="p-field-radiobutton radio_button">
-          <p-radioButton value="კაცი" formControlName="sex">კაცი</p-radioButton>
-          <label>კაცი</label>
+      <div>
+        <span class="p-float-label">
+          <input
+            id="float-input"
+            type="text"
+            pInputText
+            formControlName="name"
+            appAlphabetOnly
+            [ngClass]="{
+              'ng-invalid ng-dirty': submitted && userForm.get('name')?.invalid
+            }"
+          />
+          <label for="float-input">სახელი</label>
+        </span>
+        <div>
+          <span
+            class="error_text"
+            *ngIf="submitted && userForm.get('name')?.hasError('required')"
+            >გთხოვთ, შეავსოთ მოცემული ველი</span
+          >
+          <span
+            class="error_text"
+            *ngIf="submitted && userForm.get('name')?.hasError('minlength')"
+          >
+            შეყვანილი ტექსტის უნდა შეადგენდეს მინიმუმ 2 სიმბოლოს</span
+          >
+          <span
+            class="error_text"
+            *ngIf="submitted && userForm.get('name')?.hasError('maxlength')"
+          >
+            შეყვანილი ტექსტის უნდა შეადგენდეს მაქსიმუმ 50 სიმბოლოს</span
+          >
         </div>
       </div>
 
-      <span class="p-float-label">
-        <input
-          id="float-input"
-          type="text"
-          pInputText
-          formControlName="identificationNumber"
-        />
-        <label for="float-input">პირადი ნომერი</label>
-      </span>
+      <div>
+        <span class="p-float-label">
+          <input
+            id="float-input"
+            type="text"
+            pInputText
+            [ngClass]="{
+              'ng-invalid ng-dirty':
+                submitted && userForm.get('lastName')?.invalid
+            }"
+            formControlName="lastName"
+            appAlphabetOnly
+          />
+          <label for="float-input">გვარი</label>
+        </span>
+        <div>
+          <span
+            class="error_text"
+            *ngIf="submitted && userForm.get('lastName')?.hasError('required')"
+            >გთხოვთ, შეავსოთ მოცემული ველი</span
+          >
+          <span
+            class="error_text"
+            *ngIf="submitted && userForm.get('lastName')?.hasError('minlength')"
+          >
+            შეყვანილი ტექსტის უნდა შეადგენდეს მინიმუმ 2 სიმბოლოს</span
+          >
+          <span
+            class="error_text"
+            *ngIf="submitted && userForm.get('lastName')?.hasError('maxlength')"
+          >
+            შეყვანილი ტექსტის უნდა შეადგენდეს მაქსიმუმ 50 სიმბოლოს</span
+          >
+        </div>
+      </div>
+
+      <div>
+        <div class="flex radio_button_wrapper radio_button">
+          <div class="p-field-radiobutton radio_button">
+            <p-radioButton value="ქალი" formControlName="sex"
+              >ქალი</p-radioButton
+            >
+            <label>ქალი</label>
+          </div>
+          <div class="p-field-radiobutton radio_button">
+            <p-radioButton value="კაცი" formControlName="sex"
+              >კაცი</p-radioButton
+            >
+            <label>კაცი</label>
+          </div>
+        </div>
+        <span
+          class="error_text"
+          *ngIf="submitted && userForm.get('sex')?.invalid"
+          >გთხოვთ, შეავსოთ მოცემული ველი</span
+        >
+      </div>
+
+      <div>
+        <span class="p-float-label">
+          <input
+            id="float-input"
+            type="text"
+            [ngClass]="{
+              'ng-invalid ng-dirty':
+                submitted && userForm.get('identificationNumber')?.invalid
+            }"
+            pInputText
+            formControlName="identificationNumber"
+          />
+          <label for="float-input">პირადი ნომერი</label>
+        </span>
+        <div>
+          <span
+            class="error_text"
+            *ngIf="
+              submitted &&
+              userForm.get('identificationNumber')?.hasError('required')
+            "
+          >
+            გთხოვთ, შეავსოთ მოცემული ველი</span
+          >
+          <span
+            class="error_text"
+            *ngIf="
+              submitted &&
+              userForm.get('identificationNumber')?.hasError('numberValue')
+            "
+          >
+            პირადი ნომერი უნდა შედგებოდეს 11 სიმბოლოსგან</span
+          >
+        </div>
+      </div>
     </div>
 
     <div class="flex row_wrapper">
-      <span class="p-float-label">
-        <input
-          id="float-input"
-          type="text"
-          pInputText
-          formControlName="mobileNumber"
-        />
-        <label for="float-input">მობილური</label>
-      </span>
+      <div>
+        <span class="p-float-label">
+          <input
+            id="float-input"
+            type="text"
+            pInputText
+            [ngClass]="{
+              'ng-invalid ng-dirty':
+                submitted && userForm.get('mobileNumber')?.invalid
+            }"
+            formControlName="mobileNumber"
+          />
+          <label for="float-input">მობილური</label>
+        </span>
+        <div>
+          <span
+            class="error_text"
+            *ngIf="
+              submitted && userForm.get('mobileNumber')?.hasError('required')
+            "
+          >
+            გთხოვთ, შეავსოთ მოცემული ველი</span
+          >
+          <span
+            class="error_text"
+            *ngIf="
+              submitted && userForm.get('mobileNumber')?.hasError('numberValue')
+            "
+          >
+            ტელეფონის ნომერი უნდა შედგებოდეს 9 სიმბოლოსგან</span
+          >
+        </div>
+      </div>
 
       <div formGroupName="physicalAddress" class="flex">
-        <span class="p-float-label">
-          <input
-            id="float-input"
-            type="text"
-            pInputText
-            formControlName="country"
-          />
-          <label for="float-input">ქვეყანა</label>
-        </span>
-        <span class="p-float-label">
-          <input
-            id="float-input"
-            type="text"
-            pInputText
-            formControlName="city"
-          />
-          <label for="float-input">ქალაქი</label>
-        </span>
-        <span class="p-float-label">
-          <input
-            id="float-input"
-            type="text"
-            pInputText
-            formControlName="streetAdress"
-          />
-          <label for="float-input">მისამართი</label>
-        </span>
+        <div>
+          <span class="p-float-label">
+            <input
+              id="float-input"
+              type="text"
+              [ngClass]="{
+                'ng-invalid ng-dirty':
+                  submitted &&
+                  userForm.get('physicalAddress')?.get('country')?.invalid
+              }"
+              pInputText
+              formControlName="country"
+            />
+            <label for="float-input">ქვეყანა</label>
+          </span>
+          <div>
+            <span
+              class="error_text"
+              *ngIf="
+                submitted &&
+                userForm.get('physicalAddress')?.get('country')?.invalid
+              "
+              >გთხოვთ, შეავსოთ მოცემული ველი</span
+            >
+          </div>
+        </div>
+
+        <div>
+          <span class="p-float-label">
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              [ngClass]="{
+                'ng-invalid ng-dirty':
+                  submitted &&
+                  userForm.get('physicalAddress')?.get('city')?.invalid
+              }"
+              formControlName="city"
+            />
+            <label for="float-input">ქალაქი</label>
+          </span>
+          <div>
+            <span
+              class="error_text"
+              *ngIf="
+                submitted &&
+                userForm.get('physicalAddress')?.get('city')?.invalid
+              "
+              >გთხოვთ, შეავსოთ მოცემული ველი</span
+            >
+          </div>
+        </div>
+
+        <div>
+          <span class="p-float-label">
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              [ngClass]="{
+                'ng-invalid ng-dirty':
+                  submitted &&
+                  userForm.get('physicalAddress')?.get('streetAdress')?.invalid
+              }"
+              formControlName="streetAdress"
+            />
+            <label for="float-input">მისამართი</label>
+          </span>
+          <div>
+            <span
+              class="error_text"
+              *ngIf="
+                submitted &&
+                userForm.get('physicalAddress')?.get('streetAdress')?.invalid
+              "
+              >გთხოვთ, შეავსოთ მოცემული ველი</span
+            >
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- <p-fileUpload mode="basic" name="demo[]" accept="image/*"></p-fileUpload> -->
     <div class="uploader" *ngIf="!editMode || newImageUpload">
+      <span
+        class="error_text"
+        style="margin-bottom: 10px"
+        *ngIf="submitted && userForm.get('image')?.invalid"
+        >გთხოვთ, აირჩიოთ სურათი</span
+      >
       <p-fileUpload
         matTooltip="გთხოვთ, ატვირთოთ მინიმუმ 5 და მაქსიმუმ 30 სურათი"
         #fileUploader
