@@ -1,3 +1,12 @@
-@import "~primeng/resources/themes/saga-blue/theme.css";
-@import "~primeng/resources/primeng.min.css";
-@import "~primeicons/primeicons.css";
+@import '~primeng/resources/themes/saga-blue/theme.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeicons/primeicons.css';
+
+@import './assets/styles/reset.scss';
+
+i {
+  cursor: pointer;
+  &:hover {
+    color: #39a2db;
+  }
+}

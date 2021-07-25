@@ -1,0 +1,87 @@
+<p-table
+  #dt
+  [columns]="cols"
+  [value]="usersData"
+  [lazy]="true"
+  [rows]="maxRowsNumber"
+  [paginator]="true"
+  [totalRecords]="totalRecords"
+  [loading]="usersDataLoading"
+  [pageLinks]="3"
+  [filterDelay]="0"
+  [autoLayout]="true"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" [ngSwitch]="col.field">
+        <div>
+          {{ col.header }}
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns" [ngSwitch]="col.field">
+        <ng-container *ngSwitchCase="'image'">
+          <img [src]="rowData?.image" alt="მოხმარებლის სურათი" />
+        </ng-container>
+        <ng-container *ngSwitchCase="'address'">
+          {{ rowData?.physicalAddress?.country }},
+          {{ rowData?.physicalAddress?.city }},
+          {{ rowData?.physicalAddress?.streetAdress }}</ng-container
+        >
+        <ng-container *ngSwitchCase="'action'">
+          <div class="icons_wrapper">
+            <i
+              class="pi pi-pencil"
+              pTooltip="მომხმარებლის რედაქტირება"
+              tooltipPosition="bottom"
+              (click)="editUser(rowData)"
+            ></i>
+            <i
+              class="pi pi-user-minus"
+              pTooltip="მომხმარებლის წაშლა"
+              tooltipPosition="bottom"
+              (click)="deleteUser(rowData)"
+            ></i>
+            <i
+              class="pi pi-plus-circle"
+              pTooltip="ბონუსის დამატება"
+              tooltipPosition="bottom"
+            ></i>
+            <i
+              class="pi pi-minus-circle"
+              pTooltip="ბონუსის წაშლა"
+              tooltipPosition="bottom"
+            ></i>
+            <i
+              class="pi pi-info-circle"
+              pTooltip="მომხმარებლის დეტალური ნახვა"
+              tooltipPosition="bottom"
+            ></i>
+          </div>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>{{ rowData[col.field] }}</ng-container>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="emptymessage" let-columns>
+    <tr>
+      <td [attr.colspan]="columns.length" style="text-align: left">
+        ჩანაწერი არ მოიძებნა
+      </td>
+    </tr>
+  </ng-template>
+  <!-- <ng-template pTemplate="paginatorleft">
+    <app-table-items-per-page
+      [itemsPerPageOpts]="[5, 10, 20]"
+      [dataLength]="totalRecords"
+      [maxRowNumber]="maxRowsNumber"
+      [dataLoaded]="myOrdersDataLoaded"
+      (changeMaxRowNumber)="changeMacRowNumber($event)"
+    ></app-table-items-per-page>
+  </ng-template> -->
+</p-table>

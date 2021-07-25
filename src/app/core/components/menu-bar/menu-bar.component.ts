@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { DialogService } from 'primeng/dynamicdialog';
-import { AddNewUserComponent } from 'src/app/features/users/components/add-new-user/add-new-user.component';
+import {Component, OnInit} from '@angular/core';
+import {MenuItem} from 'primeng/api';
+import {DialogService} from 'primeng/dynamicdialog';
+import {AddNewUserComponent} from 'src/app/features/users/components/add-new-user/add-new-user.component';
 
 @Component({
   selector: 'app-menu-bar',
@@ -30,7 +30,7 @@ export class MenuBarComponent implements OnInit {
   }
 
   addUser() {
-    const ref = this.dialogService.open(AddNewUserComponent, {
+    this.dialogService.open(AddNewUserComponent, {
       header: 'მომხმარებლის დამატება',
       width: '70%',
     });

@@ -1,0 +1,14 @@
+.delete_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    margin-bottom: 30px;
+    span {
+      font-weight: 900;
+    }
+  }
+  button:not(:last-child) {
+    margin-right: 20px;
+  }
+}

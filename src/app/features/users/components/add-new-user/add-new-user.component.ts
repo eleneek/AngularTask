@@ -1,26 +1,40 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {DynamicDialogRef} from 'primeng/dynamicdialog';
+import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
+import {Subject} from 'rxjs';
+import {takeUntil, tap} from 'rxjs/operators';
 import {checkNumberLength} from '../../services/helpers/number-validation';
-import {UsersService} from '../../services/users.service';
 import {UsersState} from '../../store';
-import {addUser} from '../../store/actions';
-import {selectlUsers} from '../../store/selectors/user.selector';
+import {
+  addUser,
+  getUsers,
+  refreshAddUser,
+  refreshUpdateUser,
+  updateUser,
+} from '../../store/actions';
+import {
+  selectAddUserLoaded,
+  selectUpdateUserLoaded,
+} from '../../store/selectors/user.selector';
 
 @Component({
   selector: 'app-add-new-user',
   templateUrl: './add-new-user.component.html',
   styleUrls: ['./add-new-user.component.scss'],
 })
-export class AddNewUserComponent implements OnInit {
-  userForm: FormGroup;
-  submitted: boolean = false;
+export class AddNewUserComponent implements OnInit, OnDestroy {
+  public userForm: FormGroup;
+  public submitted: boolean = false;
+  private destroyed$ = new Subject<void>();
+  public editMode: boolean = false;
+  public newImageUpload: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     public ref: DynamicDialogRef,
-    private userServ: UsersService,
-    private store: Store<UsersState>
+    private store: Store<UsersState>,
+    public config: DynamicDialogConfig
   ) {
     this.userForm = this.fb.group({
       id: [null],
@@ -56,32 +70,80 @@ export class AddNewUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.store.select(selectlUsers).subscribe((data) => console.log(data));
+    if (this.config.data) {
+      this.editMode = true;
+      this.userForm.setValue(this.config.data);
+    } else {
+      this.editMode = false;
+    }
+    this.store
+      .select(selectAddUserLoaded)
+      .pipe(
+        takeUntil(this.destroyed$),
+        tap((data) => {
+          if (data) {
+            this.closeAndLoadData();
+            this.store.dispatch(refreshAddUser());
+          }
+        })
+      )
+      .subscribe();
+    this.store
+      .select(selectUpdateUserLoaded)
+      .pipe(
+        takeUntil(this.destroyed$),
+        tap((data) => {
+          if (data) {
+            this.closeAndLoadData();
+            this.store.dispatch(refreshUpdateUser());
+          }
+        })
+      )
+      .subscribe();
   }
 
-  onRemove(event: any) {
+  public onRemove() {
     this.userForm.get('image')?.setValue('');
   }
-  onSelect(event: any) {
+  public onSelect(event: any) {
     for (let file of event.files) {
-      this.userForm
-        .get('image')
-        ?.setValue(file.objectURL.changingThisBreaksApplicationSecurity);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const base64data = reader.result as string;
+        this.userForm.get('image')?.setValue(base64data);
+      };
     }
   }
 
-  close() {
+  public close() {
     this.ref.close();
   }
 
-  submit() {
+  public submit() {
     this.submitted = true;
-    if (this.userForm.invalid) {
-      return;
-    }
+    if (this.userForm.invalid) return;
 
-    this.userForm.get('id')?.setValue(new Date().getUTCMilliseconds());
-    this.userServ.addUser(this.userForm.value).subscribe();
-    this.store.dispatch(addUser({user: this.userForm.value}));
+    if (this.editMode) {
+      this.store.dispatch(updateUser({user: this.userForm.value}));
+    } else {
+      this.userForm.get('id')?.setValue(new Date().getUTCMilliseconds());
+      this.store.dispatch(addUser({user: this.userForm.value}));
+    }
+  }
+
+  closeAndLoadData() {
+    this.ref.close();
+    this.store.dispatch(getUsers());
+  }
+
+  changeImage() {
+    this.newImageUpload = true;
+    this.onRemove();
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 }

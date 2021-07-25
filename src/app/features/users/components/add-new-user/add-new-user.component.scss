@@ -1,5 +1,49 @@
 .wrapper {
   padding: 20px 82px;
+  .image_wrapper {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 55px;
+    &:hover .overlay {
+      opacity: 1;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      border: 3px solid #39a2db;
+      border-radius: 5px;
+      margin-right: 20px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 20%;
+      bottom: 0;
+      left: 9%;
+      right: 0;
+      height: 31%;
+      width: 13%;
+      border-radius: 5px;
+      opacity: 0;
+      transition: 0.2s ease;
+      background-color: #008cba;
+      cursor: pointer;
+      .text {
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+    }
+  }
   .row_wrapper {
     margin-bottom: 20px;
   }

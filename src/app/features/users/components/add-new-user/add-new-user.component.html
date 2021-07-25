@@ -1,5 +1,12 @@
 <div class="wrapper">
   <form [formGroup]="userForm">
+    <div class="image_wrapper" *ngIf="editMode && !newImageUpload">
+      <img [src]="userForm.get('image')?.value" alt="მომხმარებლის სურათი" />
+      <div class="overlay" (click)="changeImage()">
+        <div class="text">სურათის შეცვლა</div>
+      </div>
+    </div>
+
     <div class="flex row_wrapper">
       <span class="p-float-label">
         <input
@@ -86,11 +93,11 @@
     </div>
 
     <!-- <p-fileUpload mode="basic" name="demo[]" accept="image/*"></p-fileUpload> -->
-    <div class="uploader">
+    <div class="uploader" *ngIf="!editMode || newImageUpload">
       <p-fileUpload
         matTooltip="გთხოვთ, ატვირთოთ მინიმუმ 5 და მაქსიმუმ 30 სურათი"
         #fileUploader
-        (onRemove)="onRemove($event)"
+        (onRemove)="onRemove()"
         (onSelect)="onSelect($event)"
         [chooseLabel]="'აირჩიეთ სურათი'"
         [showUploadButton]="false"
@@ -108,7 +115,7 @@
       გაუქმება
     </button>
     <button pButton type="button" (click)="submit()">
-      მომხმარებლის დამატება
+      {{ editMode ? 'მომხმარებლის რედაქტირება' : ' მომხმარებლის დამატება' }}
     </button>
   </div>
 </div>

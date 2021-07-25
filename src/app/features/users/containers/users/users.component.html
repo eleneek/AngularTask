@@ -1,1 +1,8 @@
-<p>users works!</p>
+<app-users-table
+  [usersData]="usersData"
+  [usersDataLoading]="usersDataLoading"
+  [maxRowsNumber]="maxRowsNumber"
+  [totalRecords]="totalRecords"
+  (editUserEmitter)="editUser($event)"
+  (deleteUserEmitter)="deleteUser($event)"
+></app-users-table>
