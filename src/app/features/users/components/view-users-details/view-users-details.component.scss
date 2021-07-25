@@ -1,0 +1,35 @@
+.details_wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  img {
+    width: 120px;
+    height: 120px;
+    border: 3px solid #39a2db;
+    border-radius: 5px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 40px;
+  }
+
+  h4 {
+    text-align: center;
+    &:first-of-type {
+      margin-bottom: 15px;
+    }
+    &:last-of-type {
+      margin-bottom: 40px;
+    }
+  }
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:not(:last-child) {
+      margin-bottom: 35px;
+    }
+  }
+}

@@ -1,1 +1,85 @@
-<p>view-users-details works!</p>
+<div class="details_wrapper">
+  <h4>ზოგადი ინფორმაცია</h4>
+  <img [src]="userData.image" alt="" />
+  <div class="flex">
+    <span class="p-float-label">
+      <input type="text" pInputText [value]="userData.name" readonly />
+      <label for="float-input">სახელი</label>
+    </span>
+    <span class="p-float-label">
+      <input type="text" pInputText [value]="userData.lastName" readonly />
+      <label for="float-input">გვარი</label>
+    </span>
+    <span class="p-float-label">
+      <input type="text" pInputText [value]="userData.sex" readonly />
+      <label for="float-input">სქესი</label>
+    </span>
+    <span class="p-float-label">
+      <input
+        type="text"
+        pInputText
+        [value]="userData.identificationNumber"
+        readonly
+      />
+      <label for="float-input">პირადი ნომერი </label>
+    </span>
+  </div>
+
+  <div class="flex">
+    <span class="p-float-label">
+      <input type="text" pInputText [value]="userData.mobileNumber" readonly />
+      <label for="float-input">მობილური</label>
+    </span>
+    <span class="p-float-label">
+      <input
+        type="text"
+        pInputText
+        [value]="userData.physicalAddress.country"
+        readonly
+      />
+      <label for="float-input">ქვეყანა</label>
+    </span>
+    <span class="p-float-label">
+      <input
+        type="text"
+        pInputText
+        [value]="userData.physicalAddress.city"
+        readonly
+      />
+      <label for="float-input">ქალაქი</label>
+    </span>
+    <span class="p-float-label">
+      <input
+        type="text"
+        pInputText
+        [value]="userData.physicalAddress.streetAdress"
+        readonly
+      />
+      <label for="float-input">მისამართი</label>
+    </span>
+  </div>
+
+  <h4>ბონუსები</h4>
+
+  <ng-container *ngIf="userData.bonuses && userData.bonuses.length">
+    <div *ngFor="let bonus of userData.bonuses; let i = index" class="flex">
+      <span>{{ i + 1 }}.</span>
+      <span class="p-float-label">
+        <input type="text" pInputText [value]="bonus.userNumber" readonly />
+        <label for="float-input">მომხმარებლის ნომერი </label>
+      </span>
+      <span class="p-float-label">
+        <input type="text" pInputText [value]="bonus.bonusType.name" readonly />
+        <label for="float-input">ბონუსის ტიპი </label>
+      </span>
+      <span class="p-float-label">
+        <input type="text" pInputText [value]="bonus.bonusAmount" readonly />
+        <label for="float-input">ბონუსის რაოდენობა</label>
+      </span>
+      <span class="p-float-label" *ngIf="bonus.currency">
+        <input type="text" pInputText [value]="bonus.currency.name" readonly />
+        <label for="float-input">ვალუტა</label>
+      </span>
+    </div>
+  </ng-container>
+</div>

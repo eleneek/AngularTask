@@ -14,6 +14,7 @@ import {
   selectGetUsers,
   selectGetUsersLoading,
 } from '../../store/selectors/user.selector';
+import {ViewUsersDetailsComponent} from '../../components/view-users-details/view-users-details.component';
 
 @Component({
   selector: 'app-users',
@@ -81,6 +82,13 @@ export class UsersComponent implements OnInit, OnDestroy {
   viewAndDeleteBonus($event: User) {
     this.dialogService.open(ViewAndDeleteBonusesComponent, {
       header: 'ბონუსის ნახვა/წაშლა',
+      width: '70%',
+      data: $event,
+    });
+  }
+  viewDetails($event: User) {
+    this.dialogService.open(ViewUsersDetailsComponent, {
+      header: 'მომხმარებლის დეტალური ნახვა',
       width: '70%',
       data: $event,
     });
