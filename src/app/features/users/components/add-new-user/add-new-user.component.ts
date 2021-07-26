@@ -1,11 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {Subject} from 'rxjs';
 import {takeUntil, tap} from 'rxjs/operators';
+import {MessageToastService} from 'src/app/shared/services/message-toast.service';
 import {CanComponentDeactivate} from '../../guards/prevent-back-button.guard';
 import {checkNumberLength} from '../../services/helpers/number-validation';
+import {User} from '../../services/models/users.interface';
 import {UsersService} from '../../services/users.service';
 import {UsersState} from '../../store';
 import {
@@ -17,6 +20,7 @@ import {
 } from '../../store/actions';
 import {
   selectAddUserLoaded,
+  selectGetUsers,
   selectUpdateUserLoaded,
 } from '../../store/selectors/user.selector';
 
@@ -25,19 +29,26 @@ import {
   templateUrl: './add-new-user.component.html',
   styleUrls: ['./add-new-user.component.scss'],
 })
-export class AddNewUserComponent implements OnInit, OnDestroy {
+export class AddNewUserComponent
+  implements OnInit, OnDestroy, CanComponentDeactivate
+{
+  @ViewChild('fileUploader', {static: false})
+  fileUploadControl: any;
+
   public userForm: FormGroup;
   public submitted: boolean = false;
   private destroyed$ = new Subject<void>();
   public editMode: boolean = false;
   public newImageUpload: boolean = false;
+  private addedUsers: User[] = [];
 
   constructor(
     private fb: FormBuilder,
     public ref: DynamicDialogRef,
     private store: Store<UsersState>,
     public config: DynamicDialogConfig,
-    private userServ: UsersService
+    private userServ: UsersService,
+    private messageServ: MessageToastService
   ) {
     this.userForm = this.fb.group({
       id: [null],
@@ -80,7 +91,9 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
       this.userForm.setValue(this.config.data);
     } else {
       this.editMode = false;
+      this.store.dispatch(getUsers());
     }
+
     this.store
       .select(selectAddUserLoaded)
       .pipe(
@@ -89,6 +102,9 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
           if (data) {
             this.closeAndLoadData();
             this.store.dispatch(refreshAddUser());
+            this.userForm.reset();
+            this.fileUploadControl.clear();
+            this.submitted = false;
           }
         })
       )
@@ -105,6 +121,25 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe();
+    this.store
+      .select(selectGetUsers)
+      .pipe(
+        takeUntil(this.destroyed$),
+        tap((data) => {
+          if (data) {
+            this.addedUsers = data;
+          }
+        })
+      )
+      .subscribe();
+  }
+
+  canDeactivate() {
+    if (this.userForm.valid && !this.editMode) {
+      return window.confirm('დარწმუნებული ხართ რომ გსურთ გასვლა ?');
+    } else {
+      return false;
+    }
   }
 
   public onRemove() {
@@ -128,8 +163,25 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
 
   public submit() {
     this.submitted = true;
+    let userAdded = false;
     if (this.userForm.invalid) return;
 
+    this.addedUsers.forEach((user) => {
+      if (
+        user.identificationNumber ===
+        this.userForm.get('identificationNumber')?.value
+      ) {
+        userAdded = true;
+      }
+    });
+    if (userAdded) {
+      this.messageServ.addToast(
+        'error',
+        'მომხმარებლის დამატება',
+        'მომხმარებელი მოცემული პირადი ნომრით უკვე დარეგისტრირებულია'
+      );
+      return;
+    }
     if (this.editMode) {
       this.store.dispatch(updateUser({user: this.userForm.value}));
     } else {

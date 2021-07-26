@@ -1,4 +1,5 @@
 <div class="wrapper">
+  <h4 *ngIf="!editMode">მომხმარებლის დამატება</h4>
   <form [formGroup]="userForm">
     <div class="image_wrapper" *ngIf="editMode && !newImageUpload">
       <img [src]="userForm.get('image')?.value" alt="მომხმარებლის სურათი" />
@@ -265,8 +266,8 @@
         >გთხოვთ, აირჩიოთ სურათი</span
       >
       <p-fileUpload
-        matTooltip="გთხოვთ, ატვირთოთ მინიმუმ 5 და მაქსიმუმ 30 სურათი"
         #fileUploader
+        matTooltip="გთხოვთ, ატვირთოთ მინიმუმ 5 და მაქსიმუმ 30 სურათი"
         (onRemove)="onRemove()"
         (onSelect)="onSelect($event)"
         [chooseLabel]="'აირჩიეთ სურათი'"

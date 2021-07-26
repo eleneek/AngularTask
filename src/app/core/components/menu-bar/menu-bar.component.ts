@@ -17,6 +17,11 @@ export class MenuBarComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
+        label: 'მომხმარებლების სია',
+        icon: 'pi pi-fw pi-user',
+        command: () => this.router.navigateByUrl('/users'),
+      },
+      {
         label: 'მომხმარებელი',
         icon: 'pi pi-fw pi-user',
         items: [
@@ -31,10 +36,10 @@ export class MenuBarComponent implements OnInit {
   }
 
   addUser() {
-    // this.router.navigateByUrl('/users/add-user');
-    this.dialogService.open(AddNewUserComponent, {
-      header: 'მომხმარებლის დამატება',
-      width: '70%',
-    });
+    this.router.navigateByUrl('/users/add-user');
+    // this.dialogService.open(AddNewUserComponent, {
+    //   header: 'მომხმარებლის დამატება',
+    //   width: '70%',
+    // });
   }
 }
