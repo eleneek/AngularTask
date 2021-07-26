@@ -62,7 +62,7 @@
   <h5>ბონუსები</h5>
 
   <ng-container *ngIf="userData.bonuses && userData.bonuses.length">
-    <div *ngFor="let bonus of userData.bonuses; let i = index" class="flex">
+    <div *ngFor="let bonus of userData.bonuses; let i = index" class="bonus">
       <span>{{ i + 1 }}.</span>
       <span class="p-float-label">
         <input type="text" pInputText [value]="bonus.userNumber" readonly />
