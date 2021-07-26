@@ -62,7 +62,7 @@
   <h5>ბონუსები</h5>
 
   <ng-container *ngIf="userData.bonuses && userData.bonuses.length">
-    <div *ngFor="let bonus of userData.bonuses; let i = index" class="bonus">
+    <div *ngFor="let bonus of userData.bonuses; let i = index" class="flex">
       <span>{{ i + 1 }}.</span>
       <span class="p-float-label">
         <input type="text" pInputText [value]="bonus.userNumber" readonly />
@@ -76,8 +76,13 @@
         <input type="text" pInputText [value]="bonus.bonusAmount" readonly />
         <label for="float-input">ბონუსის რაოდენობა</label>
       </span>
-      <span class="p-float-label" *ngIf="bonus.currency">
-        <input type="text" pInputText [value]="bonus.currency.name" readonly />
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          [value]="bonus.currency?.name || '-'"
+          readonly
+        />
         <label for="float-input">ვალუტა</label>
       </span>
     </div>
