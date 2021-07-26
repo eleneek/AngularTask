@@ -204,7 +204,6 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
 
   changeImage() {
     this.newImageUpload = true;
-    // this.onRemove();
   }
 
   ngOnDestroy() {

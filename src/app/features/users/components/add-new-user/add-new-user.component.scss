@@ -8,21 +8,20 @@
   }
   .image_wrapper {
     display: flex;
-    width: 150px;
+    width: 170px;
     height: 140px;
     margin-bottom: 55px;
 
     i {
+      font-size: 20px;
       display: flex;
-      justify-content: 1%;
-      position: absolute;
-      left: 20%;
-      top: 18%;
-      background-color: red;
-      border-radius: 50%;
-      width: 30px;
-      height: 25px;
       justify-content: center;
+      background-color: #0d89ec;
+      color: #ffffff;
+      border-radius: 50%;
+      width: 42px;
+      height: 30px;
+      align-items: center;
     }
     &:hover .overlay {
       opacity: 1;
