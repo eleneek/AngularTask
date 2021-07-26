@@ -1,11 +1,13 @@
 <div class="wrapper">
   <h4 *ngIf="!editMode">მომხმარებლის დამატება</h4>
   <form [formGroup]="userForm">
-    <div class="image_wrapper" *ngIf="editMode">
+    <div class="image_wrapper" *ngIf="editMode && userForm.get('image')?.value">
       <img [src]="userForm.get('image')?.value" alt="მომხმარებლის სურათი" />
-      <div class="overlay" (click)="changeImage()" *ngIf="!newImageUpload">
-        <div class="text">სურათის შეცვლა</div>
-      </div>
+      <i
+        class="pi pi-upload"
+        pTooltip="ახალი სურათის ატვირთვა"
+        tooltipPosition="bottom"
+      ></i>
     </div>
 
     <div class="flex row_wrapper">
