@@ -12,6 +12,7 @@ import {UsersState} from '../../store';
 import {getUsers} from '../../store/actions';
 import {
   selectGetUsers,
+  selectGetUsersLoaded,
   selectGetUsersLoading,
 } from '../../store/selectors/user.selector';
 import {ViewUsersDetailsComponent} from '../../components/view-users-details/view-users-details.component';
@@ -49,6 +50,26 @@ export class UsersComponent implements OnInit, OnDestroy {
       )
       .subscribe();
     this.store
+      .select(selectGetUsersLoaded)
+      .pipe(
+        takeUntil(this.destroyed$),
+        tap((data) => {
+          if (data) {
+            if (this.totalRecords < this.first) {
+              this.first = 0;
+              this.changeFirstValue(0);
+            } else {
+              if (sessionStorage.getItem('currentPage')) {
+                this.first = parseInt(
+                  sessionStorage.getItem('currentPage') || ''
+                );
+              }
+            }
+          }
+        })
+      )
+      .subscribe();
+    this.store
       .select(selectGetUsersLoading)
       .pipe(
         takeUntil(this.destroyed$),
@@ -63,6 +84,9 @@ export class UsersComponent implements OnInit, OnDestroy {
     sessionStorage.setItem('filters', JSON.stringify($event));
     this.usersServ.filtersForm = $event;
     this.store.dispatch(getUsers());
+  }
+  changeFirstValue($event: number) {
+    sessionStorage.setItem('currentPage', $event.toString());
   }
 
   editUser($event: User) {
