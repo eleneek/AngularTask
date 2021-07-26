@@ -7,7 +7,13 @@
   }
   button {
     margin-right: 15px;
-    background-color: #8f10efab;
-    border-color: #8f10efab;
+    &.search {
+      background-color: #8f10efab;
+      border-color: #8f10efab;
+    }
+    &.clear {
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
   }
 }

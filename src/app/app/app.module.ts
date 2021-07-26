@@ -15,10 +15,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './containers/app/app.component';
 import {CoreModule} from '../core/core.module';
 import {MessageService} from 'primeng/api';
-import {LoaderComponent} from '../shared/components/loader/loader.component';
 
 @NgModule({
-  declarations: [AppComponent, LoaderComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

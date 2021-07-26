@@ -33,7 +33,7 @@ export class UsersTableComponent implements OnInit, AfterViewInit {
     new EventEmitter();
   @Output() changeFirstValueEmitter: EventEmitter<number> = new EventEmitter();
   @Input() first: number = 0;
-  public cols: {field: string; header: string}[] = [];
+  cols: {field: string; header: string}[] = [];
   constructor() {}
 
   ngOnInit(): void {
@@ -55,19 +55,19 @@ export class UsersTableComponent implements OnInit, AfterViewInit {
     });
   }
 
-  public editUser(rowData: User) {
+  editUser(rowData: User) {
     this.editUserEmitter.emit(rowData);
   }
-  public deleteUser(rowData: User) {
+  deleteUser(rowData: User) {
     this.deleteUserEmitter.emit(rowData);
   }
-  public addBonus(rowData: User) {
+  addBonus(rowData: User) {
     this.addBonusEmitter.emit(rowData);
   }
-  public viewAndDeleteBonus(rowData: User) {
+  viewAndDeleteBonus(rowData: User) {
     this.viewAndDeleteBonusEmitter.emit(rowData);
   }
-  public viewDetails(rowData: User) {
+  viewDetails(rowData: User) {
     this.viewDetailsEmitter.emit(rowData);
   }
   changeMaxRowNumber(num: number) {

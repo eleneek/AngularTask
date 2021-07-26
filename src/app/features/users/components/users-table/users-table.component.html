@@ -37,18 +37,21 @@
               class="pi pi-pencil"
               pTooltip="მომხმარებლის რედაქტირება"
               tooltipPosition="bottom"
+              style="color: #fbc02d"
               (click)="editUser(rowData)"
             ></i>
             <i
               class="pi pi-user-minus"
               pTooltip="მომხმარებლის წაშლა"
               tooltipPosition="bottom"
+              style="color: #d32f2f"
               (click)="deleteUser(rowData)"
             ></i>
             <i
               class="pi pi-plus-circle"
               pTooltip="ბონუსის დამატება"
               tooltipPosition="bottom"
+              style="color: #689f38"
               (click)="addBonus(rowData)"
             ></i>
             <i
@@ -58,12 +61,14 @@
               [value]="rowData?.bonuses?.length"
               severity="info"
               tooltipPosition="bottom"
+              style="color: #d32f2f"
               (click)="viewAndDeleteBonus(rowData)"
             ></i>
             <i
               class="pi pi-info-circle"
               pTooltip="მომხმარებლის დეტალური ნახვა"
               tooltipPosition="bottom"
+              style="color: #2196f3"
               (click)="viewDetails(rowData)"
             ></i>
           </div>

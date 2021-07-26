@@ -15,11 +15,11 @@ import {selectDeleteUserLoaded} from '../../store/selectors/user.selector';
 })
 export class DeleteUserComponent implements OnInit, OnDestroy {
   user: User;
-  destroyed$ = new Subject<void>();
+  private destroyed$ = new Subject<void>();
 
   constructor(
     public config: DynamicDialogConfig,
-    public ref: DynamicDialogRef,
+    private ref: DynamicDialogRef,
     private store: Store<UsersState>
   ) {
     this.user = this.config.data;

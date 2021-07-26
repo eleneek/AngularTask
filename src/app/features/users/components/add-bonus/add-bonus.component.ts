@@ -16,14 +16,14 @@ import {selectUpdateUserLoaded} from '../../store/selectors/user.selector';
   styleUrls: ['./add-bonus.component.scss'],
 })
 export class AddBonusComponent implements OnInit, OnDestroy {
-  public bonusForm: FormGroup;
-  public bonusTempaleForm = [...bonusTemplate];
+  bonusForm: FormGroup;
+  bonusTempaleForm = [...bonusTemplate];
   private destroyed$ = new Subject<void>();
-  public submitted: boolean = false;
+  submitted: boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    public ref: DynamicDialogRef,
+    private ref: DynamicDialogRef,
     private store: Store<UsersState>,
     public config: DynamicDialogConfig
   ) {

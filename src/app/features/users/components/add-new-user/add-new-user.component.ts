@@ -13,6 +13,7 @@ import {MessageToastService} from 'src/app/shared/services/message-toast.service
 import {CanComponentDeactivate} from '../../guards/prevent-back-button.guard';
 import {checkNumberLength} from '../../services/helpers/number-validation';
 import {User} from '../../services/models/users.interface';
+import {NavigateService} from '../../services/navigate.service';
 import {UsersService} from '../../services/users.service';
 import {UsersState} from '../../store';
 import {
@@ -33,27 +34,25 @@ import {
   templateUrl: './add-new-user.component.html',
   styleUrls: ['./add-new-user.component.scss'],
 })
-export class AddNewUserComponent
-  implements OnInit, OnDestroy, CanComponentDeactivate
-{
+export class AddNewUserComponent implements OnInit, OnDestroy {
   @ViewChild('fileUploader', {static: false})
   fileUploadControl: any;
-
-  public userForm: FormGroup;
-  public submitted: boolean = false;
+  userForm: FormGroup;
+  submitted: boolean = false;
   private destroyed$ = new Subject<void>();
-  public editMode: boolean = false;
-  public newImageUpload: boolean = false;
+  editMode: boolean = false;
+  newImageUpload: boolean = false;
   private addedUsers: User[] = [];
 
   constructor(
     private fb: FormBuilder,
-    public ref: DynamicDialogRef,
+    private ref: DynamicDialogRef,
     private store: Store<UsersState>,
     public config: DynamicDialogConfig,
     private userServ: UsersService,
     private messageServ: MessageToastService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private navigateServ: NavigateService
   ) {
     this.userForm = this.fb.group({
       id: [null],
@@ -90,6 +89,7 @@ export class AddNewUserComponent
   }
 
   ngOnInit(): void {
+    this.navigateServ.canNavigate = true;
     this.userServ.addAndEditModalOpened = true;
     if (this.config.data) {
       this.editMode = true;
@@ -137,14 +137,9 @@ export class AddNewUserComponent
         })
       )
       .subscribe();
-  }
-
-  canDeactivate() {
-    if (this.userForm.valid && !this.editMode) {
-      return window.confirm('დარწმუნებული ხართ რომ გსურთ გასვლა ?');
-    } else {
-      return true;
-    }
+    this.userForm.valueChanges.subscribe((data) => {
+      this.navigateServ.canNavigate = !this.userForm.valid;
+    });
   }
 
   public onRemove() {

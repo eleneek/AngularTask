@@ -1,4 +1,4 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {Subject} from 'rxjs';
@@ -26,11 +26,11 @@ import {UsersService} from '../../services/users.service';
 })
 export class UsersComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<void>();
-  public usersData: User[] = [];
-  public usersDataLoading: boolean = false;
-  public maxRowsNumber: number = 5;
-  public totalRecords: number = 0;
-  public first: number = 0;
+  usersData: User[] = [];
+  usersDataLoading: boolean = false;
+  maxRowsNumber: number = 5;
+  totalRecords: number = 0;
+  first: number = 0;
 
   constructor(
     private store: Store<UsersState>,

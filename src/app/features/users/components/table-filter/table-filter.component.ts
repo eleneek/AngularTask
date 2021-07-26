@@ -30,4 +30,9 @@ export class TableFilterComponent implements OnInit {
   search() {
     this.applyFilterEmmiter.emit(this.filterForm.value);
   }
+
+  clearFilters() {
+    this.filterForm.reset();
+    this.search();
+  }
 }

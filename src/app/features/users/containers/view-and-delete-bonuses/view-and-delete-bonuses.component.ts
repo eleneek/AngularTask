@@ -14,13 +14,13 @@ import {selectUpdateUserLoaded} from '../../store/selectors/user.selector';
   styleUrls: ['./view-and-delete-bonuses.component.scss'],
 })
 export class ViewAndDeleteBonusesComponent implements OnInit, OnDestroy {
-  public bonusesData: Bonus[] = [];
-  public maxRowsNumber: number = 3;
-  public totalRecords: number = 0;
+  bonusesData: Bonus[] = [];
+  maxRowsNumber: number = 3;
+  totalRecords: number = 0;
   private destroyed$ = new Subject<void>();
 
   constructor(
-    public ref: DynamicDialogRef,
+    private ref: DynamicDialogRef,
     private store: Store<UsersState>,
     public config: DynamicDialogConfig
   ) {}

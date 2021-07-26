@@ -8,9 +8,7 @@ import {of} from 'rxjs';
 import * as usersActions from '../actions/users.action';
 
 import {UsersService} from '../../services/users.service';
-import {MessageService} from 'primeng/api';
 import {MessageToastService} from 'src/app/shared/services/message-toast.service';
-import {LoaderService} from 'src/app/shared/services/loader.service';
 
 @Injectable()
 export class UsersEffects {

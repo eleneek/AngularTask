@@ -27,7 +27,7 @@
           <span
             class="error_text"
             *ngIf="submitted && userForm.get('name')?.hasError('required')"
-            >გთხოვთ, შეავსოთ მოცემული ველი</span
+            >გთხოვთ, შეავსოთ სახელი ველი</span
           >
           <span
             class="error_text"
@@ -63,7 +63,7 @@
           <span
             class="error_text"
             *ngIf="submitted && userForm.get('lastName')?.hasError('required')"
-            >გთხოვთ, შეავსოთ მოცემული ველი</span
+            >გთხოვთ, შეავსოთ გვარის ველი</span
           >
           <span
             class="error_text"
@@ -99,7 +99,7 @@
         <span
           class="error_text"
           *ngIf="submitted && userForm.get('sex')?.invalid"
-          >გთხოვთ, შეავსოთ მოცემული ველი</span
+          >გთხოვთ, აირჩიოთ სქესი</span
         >
       </div>
 
@@ -125,7 +125,7 @@
               userForm.get('identificationNumber')?.hasError('required')
             "
           >
-            გთხოვთ, შეავსოთ მოცემული ველი</span
+            გთხოვთ, შეავსოთ პირადი ნომრის ველი</span
           >
           <span
             class="error_text"
@@ -162,7 +162,7 @@
               submitted && userForm.get('mobileNumber')?.hasError('required')
             "
           >
-            გთხოვთ, შეავსოთ მოცემული ველი</span
+            გთხოვთ, შეავსოთ მობილური ნომრის ველი</span
           >
           <span
             class="error_text"
@@ -198,7 +198,7 @@
                 submitted &&
                 userForm.get('physicalAddress')?.get('country')?.invalid
               "
-              >გთხოვთ, შეავსოთ მოცემული ველი</span
+              >გთხოვთ, შეავსოთ ქვეყნის ველი</span
             >
           </div>
         </div>
@@ -225,7 +225,7 @@
                 submitted &&
                 userForm.get('physicalAddress')?.get('city')?.invalid
               "
-              >გთხოვთ, შეავსოთ მოცემული ველი</span
+              >გთხოვთ, შეავსოთ ქალაქის ველი</span
             >
           </div>
         </div>
@@ -252,7 +252,7 @@
                 submitted &&
                 userForm.get('physicalAddress')?.get('streetAdress')?.invalid
               "
-              >გთხოვთ, შეავსოთ მოცემული ველი</span
+              >გთხოვთ, შეავსოთ მისამართის ველი</span
             >
           </div>
         </div>

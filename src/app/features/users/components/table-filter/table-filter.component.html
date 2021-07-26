@@ -16,9 +16,19 @@
     pRipple
     type="submit"
     icon="pi pi-search"
-    class="p-button-rounded"
+    class="p-button-rounded search"
     (click)="search()"
     pTooltip="ძებნა"
+    tooltipPosition="bottom"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="submit"
+    icon="pi pi-times"
+    class="p-button-rounded clear"
+    (click)="clearFilters()"
+    pTooltip="ფილტრის გაწმენდა"
     tooltipPosition="bottom"
   ></button>
 </form>

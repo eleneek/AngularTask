@@ -8,7 +8,7 @@ import {User} from '../../services/models/users.interface';
   styleUrls: ['./view-users-details.component.scss'],
 })
 export class ViewUsersDetailsComponent implements OnInit {
-  public userData: User;
+  userData: User;
   constructor(public config: DynamicDialogConfig) {
     this.userData = config.data;
   }

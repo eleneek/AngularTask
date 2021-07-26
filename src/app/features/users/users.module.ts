@@ -19,6 +19,7 @@ import {ViewUsersDetailsComponent} from './components/view-users-details/view-us
 import {PreventBackButtonGuard} from './guards/prevent-back-button.guard';
 import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
 import { TableFilterComponent } from './components/table-filter/table-filter.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TableFilterComponent } from './components/table-filter/table-filter.com
     ViewAndDeleteBonusTableComponent,
     ViewUsersDetailsComponent,
     TableFilterComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
