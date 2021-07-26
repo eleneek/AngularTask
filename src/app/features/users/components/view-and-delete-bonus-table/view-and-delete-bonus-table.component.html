@@ -28,7 +28,10 @@
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
-    <tr [pSelectableRow]="rowData">
+    <tr
+      [pSelectableRow]="rowData"
+      pTooltip="ბონუსის წასაშლელად დააჭირეთ სტრიქონ(ებ)ს"
+    >
       <td *ngFor="let col of columns" [ngSwitch]="col.field">
         <ng-container *ngSwitchCase="'bonusType'">{{
           rowData.bonusType.name
