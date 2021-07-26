@@ -24,8 +24,8 @@ export class TableFilterComponent implements OnInit {
       this.filterForm.setValue(
         JSON.parse(sessionStorage.getItem('filters') || '')
       );
-      this.search();
     }
+    this.search();
   }
   search() {
     this.applyFilterEmmiter.emit(this.filterForm.value);
