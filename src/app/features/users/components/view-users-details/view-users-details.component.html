@@ -61,7 +61,7 @@
 
   <h5>ბონუსები</h5>
 
-  <ng-container *ngIf="userData.bonuses && userData.bonuses.length">
+  <ng-container *ngIf="userData.bonuses && userData.bonuses.length; else empty">
     <div *ngFor="let bonus of userData.bonuses; let i = index" class="flex">
       <span>{{ i + 1 }}.</span>
       <span class="p-float-label">
@@ -87,4 +87,7 @@
       </span>
     </div>
   </ng-container>
+  <ng-template #empty>
+    <p>მომხმარებელზე არ მოიძებნა ბონუსები</p>
+  </ng-template>
 </div>
