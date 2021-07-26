@@ -1,0 +1,13 @@
+.filters_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  span {
+    margin-right: 15px;
+  }
+  button {
+    margin-right: 15px;
+    background-color: #8f10efab;
+    border-color: #8f10efab;
+  }
+}

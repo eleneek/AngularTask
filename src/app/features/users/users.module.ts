@@ -18,6 +18,7 @@ import {ViewAndDeleteBonusTableComponent} from './components/view-and-delete-bon
 import {ViewUsersDetailsComponent} from './components/view-users-details/view-users-details.component';
 import {PreventBackButtonGuard} from './guards/prevent-back-button.guard';
 import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
+import { TableFilterComponent } from './components/table-filter/table-filter.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
     ViewAndDeleteBonusesComponent,
     ViewAndDeleteBonusTableComponent,
     ViewUsersDetailsComponent,
+    TableFilterComponent,
   ],
   imports: [
     CommonModule,

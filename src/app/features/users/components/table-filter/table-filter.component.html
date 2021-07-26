@@ -1,0 +1,24 @@
+<form [formGroup]="filterForm" class="filters_wrapper">
+  <span class="p-float-label">
+    <input type="text" pInputText formControlName="identificationNumber" />
+    <label for="float-input">პირადი ნომერი</label>
+  </span>
+  <span class="p-float-label">
+    <input type="text" pInputText formControlName="lastName" />
+    <label for="float-input">გვარი</label>
+  </span>
+  <span class="p-float-label">
+    <input type="text" pInputText formControlName="mobileNumber" />
+    <label for="float-input">მობილური ნომერი</label>
+  </span>
+  <button
+    pButton
+    pRipple
+    type="submit"
+    icon="pi pi-search"
+    class="p-button-rounded"
+    (click)="search()"
+    pTooltip="ძებნა"
+    tooltipPosition="bottom"
+  ></button>
+</form>

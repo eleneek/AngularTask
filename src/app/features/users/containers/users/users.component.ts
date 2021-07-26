@@ -15,6 +15,8 @@ import {
   selectGetUsersLoading,
 } from '../../store/selectors/user.selector';
 import {ViewUsersDetailsComponent} from '../../components/view-users-details/view-users-details.component';
+import {FiltersForm} from '../../services/models/filters.interface';
+import {UsersService} from '../../services/users.service';
 
 @Component({
   selector: 'app-users',
@@ -31,7 +33,8 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<UsersState>,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private usersServ: UsersService
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +58,13 @@ export class UsersComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe();
+  }
+
+  applyFilters($event: FiltersForm) {
+    console.log($event, 'filter');
+
+    this.usersServ.filtersForm = $event;
+    this.store.dispatch(getUsers());
   }
 
   editUser($event: User) {
