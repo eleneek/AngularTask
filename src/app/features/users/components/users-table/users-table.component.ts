@@ -16,6 +16,8 @@ export class UsersTableComponent implements OnInit {
   @Output() addBonusEmitter: EventEmitter<User> = new EventEmitter();
   @Output() viewAndDeleteBonusEmitter: EventEmitter<User> = new EventEmitter();
   @Output() viewDetailsEmitter: EventEmitter<User> = new EventEmitter();
+  @Output() changeMaxRowNumberEmitter: EventEmitter<number> =
+    new EventEmitter();
   @Input() first: number = 0;
   public cols: {field: string; header: string}[] = [];
   constructor() {}
@@ -47,5 +49,8 @@ export class UsersTableComponent implements OnInit {
   }
   public viewDetails(rowData: User) {
     this.viewDetailsEmitter.emit(rowData);
+  }
+  changeMaxRowNumber(num: number) {
+    this.changeMaxRowNumberEmitter.emit(num);
   }
 }

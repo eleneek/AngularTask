@@ -17,7 +17,7 @@ import {selectUpdateUserLoaded} from '../../store/selectors/user.selector';
 })
 export class AddBonusComponent implements OnInit, OnDestroy {
   public bonusForm: FormGroup;
-  public bonusTempaleForm = bonusTemplate;
+  public bonusTempaleForm = [...bonusTemplate];
   private destroyed$ = new Subject<void>();
   public submitted: boolean = false;
 
@@ -44,6 +44,10 @@ export class AddBonusComponent implements OnInit, OnDestroy {
             this.ref.close();
             this.store.dispatch(refreshUpdateUser());
             this.store.dispatch(getUsers());
+            this.bonusForm.reset();
+            console.log();
+
+            this.bonusTempaleForm = bonusTemplate;
           }
         })
       )

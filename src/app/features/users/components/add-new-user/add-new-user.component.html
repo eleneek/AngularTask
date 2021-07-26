@@ -1,9 +1,9 @@
 <div class="wrapper">
   <h4 *ngIf="!editMode">მომხმარებლის დამატება</h4>
   <form [formGroup]="userForm">
-    <div class="image_wrapper" *ngIf="editMode && !newImageUpload">
+    <div class="image_wrapper" *ngIf="editMode">
       <img [src]="userForm.get('image')?.value" alt="მომხმარებლის სურათი" />
-      <div class="overlay" (click)="changeImage()">
+      <div class="overlay" (click)="changeImage()" *ngIf="!newImageUpload">
         <div class="text">სურათის შეცვლა</div>
       </div>
     </div>
@@ -82,6 +82,7 @@
 
       <div>
         <div class="flex radio_button_wrapper radio_button">
+          <!-- <p-inputSwitch formControlName="sex"></p-inputSwitch> -->
           <div class="p-field-radiobutton radio_button">
             <p-radioButton value="ქალი" formControlName="sex"
               >ქალი</p-radioButton

@@ -80,13 +80,13 @@
       </td>
     </tr>
   </ng-template>
-  <!-- <ng-template pTemplate="paginatorleft">
-    <app-table-items-per-page
-      [itemsPerPageOpts]="[5, 10, 20]"
+  <ng-template pTemplate="paginatorleft">
+    <app-items-per-page
+      [itemsPerPageOpts]="[2, 3, 5]"
       [dataLength]="totalRecords"
       [maxRowNumber]="maxRowsNumber"
-      [dataLoaded]="myOrdersDataLoaded"
-      (changeMaxRowNumber)="changeMacRowNumber($event)"
-    ></app-table-items-per-page>
-  </ng-template> -->
+      [dataLoaded]="!usersDataLoading"
+      (changeMaxRowNumber)="changeMaxRowNumber($event)"
+    ></app-items-per-page>
+  </ng-template>
 </p-table>

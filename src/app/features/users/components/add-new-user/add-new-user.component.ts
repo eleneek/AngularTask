@@ -2,7 +2,11 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
+import {
+  DialogService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from 'primeng/dynamicdialog';
 import {Subject} from 'rxjs';
 import {takeUntil, tap} from 'rxjs/operators';
 import {MessageToastService} from 'src/app/shared/services/message-toast.service';
@@ -48,7 +52,8 @@ export class AddNewUserComponent
     private store: Store<UsersState>,
     public config: DynamicDialogConfig,
     private userServ: UsersService,
-    private messageServ: MessageToastService
+    private messageServ: MessageToastService,
+    public dialogService: DialogService
   ) {
     this.userForm = this.fb.group({
       id: [null],
@@ -166,22 +171,26 @@ export class AddNewUserComponent
     let userAdded = false;
     if (this.userForm.invalid) return;
 
-    this.addedUsers.forEach((user) => {
-      if (
-        user.identificationNumber ===
-        this.userForm.get('identificationNumber')?.value
-      ) {
-        userAdded = true;
+    if (!this.editMode) {
+      this.addedUsers.forEach((user) => {
+        if (
+          user.identificationNumber ===
+          this.userForm.get('identificationNumber')?.value
+        ) {
+          userAdded = true;
+        }
+      });
+
+      if (userAdded) {
+        this.messageServ.addToast(
+          'error',
+          'მომხმარებლის დამატება',
+          'მომხმარებელი მოცემული პირადი ნომრით უკვე დარეგისტრირებულია'
+        );
+        return;
       }
-    });
-    if (userAdded) {
-      this.messageServ.addToast(
-        'error',
-        'მომხმარებლის დამატება',
-        'მომხმარებელი მოცემული პირადი ნომრით უკვე დარეგისტრირებულია'
-      );
-      return;
     }
+
     if (this.editMode) {
       this.store.dispatch(updateUser({user: this.userForm.value}));
     } else {
@@ -200,7 +209,7 @@ export class AddNewUserComponent
 
   changeImage() {
     this.newImageUpload = true;
-    this.onRemove();
+    // this.onRemove();
   }
 
   ngOnDestroy() {

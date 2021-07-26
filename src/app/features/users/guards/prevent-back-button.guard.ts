@@ -19,6 +19,6 @@ export class PreventBackButtonGuard
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    return component.canDeactivate() ? component.canDeactivate() : true;
+    return component.canDeactivate() ? component.canDeactivate() : false;
   }
 }

@@ -72,6 +72,9 @@
     width: 100%;
     max-width: 845px;
     margin-bottom: 30px;
+    .hide_uploader {
+      display: none;
+    }
   }
 
   .buttons_wrapper {
@@ -81,5 +84,8 @@
     button:first-child {
       margin-right: 20px;
     }
+  }
+  span.error_text {
+    max-width: 175px;
   }
 }

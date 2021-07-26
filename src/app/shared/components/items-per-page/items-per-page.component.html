@@ -1,0 +1,9 @@
+<p-dropdown
+  *ngIf="dataLoaded"
+  [style]="{minWidth: '230px'}"
+  [options]="numbersChoice"
+  [(ngModel)]="selectedNumber"
+  optionLabel="label"
+  [showClear]="true"
+  (onChange)="changeRowNumber()"
+></p-dropdown>

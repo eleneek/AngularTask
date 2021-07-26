@@ -15,9 +15,6 @@ import {
   selectGetUsersLoading,
 } from '../../store/selectors/user.selector';
 import {ViewUsersDetailsComponent} from '../../components/view-users-details/view-users-details.component';
-import {CanComponentDeactivate} from '../../guards/prevent-back-button.guard';
-import {Router} from '@angular/router';
-import {PlatformLocation} from '@angular/common';
 
 @Component({
   selector: 'app-users',
@@ -34,9 +31,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<UsersState>,
-    public dialogService: DialogService,
-    private router: Router,
-    private ref: DynamicDialogRef
+    public dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -98,6 +93,11 @@ export class UsersComponent implements OnInit, OnDestroy {
       width: '70%',
       data: $event,
     });
+  }
+
+  changeMaxRowNumber($event: number) {
+    this.maxRowsNumber = $event;
+    this.store.dispatch(getUsers());
   }
 
   ngOnDestroy() {
