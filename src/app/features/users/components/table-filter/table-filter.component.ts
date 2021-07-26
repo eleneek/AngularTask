@@ -19,7 +19,14 @@ export class TableFilterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (sessionStorage.getItem('filters')) {
+      this.filterForm.setValue(
+        JSON.parse(sessionStorage.getItem('filters') || '')
+      );
+      this.search();
+    }
+  }
   search() {
     this.applyFilterEmmiter.emit(this.filterForm.value);
   }

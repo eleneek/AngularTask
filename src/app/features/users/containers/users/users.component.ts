@@ -38,7 +38,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(getUsers());
     this.store
       .select(selectGetUsers)
       .pipe(
@@ -61,8 +60,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   applyFilters($event: FiltersForm) {
-    console.log($event, 'filter');
-
+    sessionStorage.setItem('filters', JSON.stringify($event));
     this.usersServ.filtersForm = $event;
     this.store.dispatch(getUsers());
   }
