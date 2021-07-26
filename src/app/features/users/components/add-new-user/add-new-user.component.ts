@@ -138,7 +138,7 @@ export class AddNewUserComponent
     if (this.userForm.valid && !this.editMode) {
       return window.confirm('დარწმუნებული ხართ რომ გსურთ გასვლა ?');
     } else {
-      return false;
+      return true;
     }
   }
 

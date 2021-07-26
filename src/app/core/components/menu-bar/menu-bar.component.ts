@@ -18,7 +18,7 @@ export class MenuBarComponent implements OnInit {
     this.items = [
       {
         label: 'მომხმარებლების სია',
-        icon: 'pi pi-fw pi-user',
+        icon: 'pi pi-table',
         command: () => this.router.navigateByUrl('/users'),
       },
       {
@@ -28,18 +28,10 @@ export class MenuBarComponent implements OnInit {
           {
             label: 'დამატება',
             icon: 'pi pi-fw pi-user-plus',
-            command: () => this.addUser(),
+            command: () => this.router.navigateByUrl('/users/add-user'),
           },
         ],
       },
     ];
-  }
-
-  addUser() {
-    this.router.navigateByUrl('/users/add-user');
-    // this.dialogService.open(AddNewUserComponent, {
-    //   header: 'მომხმარებლის დამატება',
-    //   width: '70%',
-    // });
   }
 }
