@@ -42,6 +42,10 @@ export class AddNewUserComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<void>();
   editMode: boolean = false;
   newImageUpload: boolean = false;
+  sexValues: {name: string; value: string}[] = [
+    {name: 'ქალი', value: 'ქალი'},
+    {name: 'კაცი', value: 'კაცი'},
+  ];
   private addedUsers: User[] = [];
 
   constructor(

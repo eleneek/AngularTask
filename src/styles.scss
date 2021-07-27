@@ -54,3 +54,10 @@ i {
   color: #f44336;
   padding-top: 5px;
 }
+
+p-selectbutton.ng-invalid.has-error {
+  .p-button:first-of-type,
+  .p-button:last-of-type {
+    border: 1px solid #f44336;
+  }
+}

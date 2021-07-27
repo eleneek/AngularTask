@@ -84,28 +84,6 @@
       </div>
 
       <div>
-        <div class="flex radio_button_wrapper radio_button">
-          <div class="p-field-radiobutton radio_button">
-            <p-radioButton value="ქალი" formControlName="sex"
-              >ქალი</p-radioButton
-            >
-            <label>ქალი</label>
-          </div>
-          <div class="p-field-radiobutton radio_button">
-            <p-radioButton value="კაცი" formControlName="sex"
-              >კაცი</p-radioButton
-            >
-            <label>კაცი</label>
-          </div>
-        </div>
-        <span
-          class="error_text"
-          *ngIf="submitted && userForm.get('sex')?.invalid"
-          >გთხოვთ, აირჩიოთ სქესი</span
-        >
-      </div>
-
-      <div>
         <span class="p-float-label">
           <input
             id="float-input"
@@ -140,9 +118,6 @@
           >
         </div>
       </div>
-    </div>
-
-    <div class="flex row_wrapper">
       <div>
         <span class="p-float-label">
           <input
@@ -176,7 +151,9 @@
           >
         </div>
       </div>
+    </div>
 
+    <div class="flex row_wrapper">
       <div formGroupName="physicalAddress" class="flex">
         <div>
           <span class="p-float-label">
@@ -258,6 +235,38 @@
             >
           </div>
         </div>
+      </div>
+
+      <div>
+        <!-- <div class="flex radio_button_wrapper radio_button">
+          <div class="p-field-radiobutton radio_button">
+            <p-radioButton value="ქალი" formControlName="sex"
+              >ქალი</p-radioButton
+            >
+            <label>ქალი</label>
+          </div>
+          <div class="p-field-radiobutton radio_button">
+            <p-radioButton value="კაცი" formControlName="sex"
+              >კაცი</p-radioButton
+            >
+            <label>კაცი</label>
+          </div>
+        </div> -->
+
+        <p-selectButton
+          [ngClass]="{
+            'has-error': submitted && userForm.get('sex')?.invalid
+          }"
+          [style]="{width: '214px'}"
+          [options]="sexValues"
+          formControlName="sex"
+          optionLabel="name"
+        ></p-selectButton>
+        <span
+          class="error_text"
+          *ngIf="submitted && userForm.get('sex')?.invalid"
+          >გთხოვთ, დააჭიროთ ღილაკს და აირჩიოთ სქესი</span
+        >
       </div>
     </div>
 

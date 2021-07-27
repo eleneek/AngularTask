@@ -13,6 +13,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {BadgeModule} from 'primeng/badge';
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [],
@@ -31,6 +32,7 @@ import {BadgeModule} from 'primeng/badge';
     DropdownModule,
     InputNumberModule,
     BadgeModule,
+    SelectButtonModule,
   ],
   exports: [
     MenubarModule,
@@ -46,6 +48,7 @@ import {BadgeModule} from 'primeng/badge';
     DropdownModule,
     InputNumberModule,
     BadgeModule,
+    SelectButtonModule,
   ],
 })
 export class PrimengModule {}

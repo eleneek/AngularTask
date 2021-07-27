@@ -31,6 +31,9 @@
           {{ rowData?.physicalAddress?.city }},
           {{ rowData?.physicalAddress?.streetAdress }}</ng-container
         >
+        <ng-container *ngSwitchCase="'sex'">
+          {{ rowData?.sex?.name }}</ng-container
+        >
         <ng-container *ngSwitchCase="'action'">
           <div class="icons_wrapper">
             <i

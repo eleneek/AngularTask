@@ -2,7 +2,7 @@ export interface User {
   id: number;
   name: string;
   lastName: string;
-  sex: string;
+  sex: {name: string; value: string};
   identificationNumber: number;
   mobileNumber: number;
   physicalAddress: Address;

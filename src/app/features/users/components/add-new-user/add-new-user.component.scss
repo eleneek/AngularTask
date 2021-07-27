@@ -1,3 +1,9 @@
+:host ::ng-deep .p-buttonset .p-button:first-of-type,
+:host ::ng-deep .p-buttonset .p-button:last-of-type {
+  width: 98px;
+  height: 40px;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
